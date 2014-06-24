@@ -8,11 +8,10 @@
 #
 class mssql2012 (
 # See http://msdn.microsoft.com/en-us/library/ms144259.aspx
-  # Media is required to install
-  $media = 'D:\\',
+  $media,
   $instancename   = $mssql2012::params::instancename,
   $features       = $mssql2012::params::features,
-  $sapwd  = $mssql2012::params::sapwd,
+  $sapwd          = $mssql2012::params::sapwd,
   $agtsvcaccount  = $mssql2012::params::agtsvcaccount,
   $agtsvcpassword = $mssql2012::params::agtsvcpassword,
   $assvcaccount   = $mssql2012::params::assvcaccount,
@@ -68,7 +67,7 @@ class mssql2012 (
     password => $sqlsvcpassword,
   }
 
-  file { 'C:\sql2012install.ini':
+  file { 'C:/temp/sql2012install.ini':
     content => template('mssql2012/config.ini.erb'),
   }
 
@@ -77,13 +76,13 @@ class mssql2012 (
   }
 
   exec { 'install_mssql2012':
-    command   => "${media}\\setup.exe /Action=Install /IACCEPTSQLSERVERLICENSETERMS /Q /HIDECONSOLE /CONFIGURATIONFILE=C:\\sql2012install.ini /SAPWD=\"${sapwd}\" /SQLSVCPASSWORD=\"${sqlsvcpassword}\" /AGTSVCPASSWORD=\"${agtsvcpassword}\" /ASSVCPASSWORD=\"${assvcpassword}\" /RSSVCPASSWORD=\"${rssvcpassword}\"",
+    command   => "${media}\\setup.exe /Action=Install /IACCEPTSQLSERVERLICENSETERMS /Q /HIDECONSOLE /CONFIGURATIONFILE=C:\\temp\\sql2012install.ini /SAPWD=\"${sapwd}\" /SQLSVCPASSWORD=\"${sqlsvcpassword}\" /AGTSVCPASSWORD=\"${agtsvcpassword}\" /ASSVCPASSWORD=\"${assvcpassword}\" /RSSVCPASSWORD=\"${rssvcpassword}\"",
     cwd       => $media,
     path      => $media,
     logoutput => true,
     creates   => $instancedir,
     timeout   => 1200,
-    require   => [ File['C:\sql2012install.ini'],
+    require   => [ File['C:/temp/sql2012install.ini'],
                    Dism['NetFx3'] ],
   }
 }
