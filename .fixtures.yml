@@ -1,0 +1,9 @@
+fixtures:
+  repositories:
+    stdlib: 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
+    dism: 'https://github.com/puppetlabs/puppetlabs-dism.git'
+    registry: 'https://github.com/puppetlabs/puppetlabs-registry.git'
+    powershell: 'https://github.com/joshcooper/puppetlabs-powershell.git'
+    helper: 'https://github.com/bodeco/bodeco_module_helper.git'
+  symlinks:
+    mssql2012: source_dir
