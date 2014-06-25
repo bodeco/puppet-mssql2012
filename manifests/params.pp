@@ -23,7 +23,7 @@
 class mssql2012::params {
   $instancename   = 'MSSQLSERVER'
   $features       = 'SQLENGINE,CONN,SSMS,ADV_SSMS'
-  $sapwd          = 'Sql!@as#2012demo' 
+  $sapwd          = 'Sql!@as#2012demo'
   $agtsvcaccount  = 'SQLAGTSVC'
   $agtsvcpassword = 'Sql!@gt#2012demo'
   $assvcaccount   = 'SQLASSVC'
