@@ -33,6 +33,7 @@ class { 'mssql2012':
   ascollation    => 'Latin1_General_CI_AS',
   sqlcollation   => 'SQL_Latin1_General_CP1_CI_AS',
   admin          => 'Administrator'
+  setup_timeout  => 1200, 
 }
 ```
 

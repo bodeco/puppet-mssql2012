@@ -24,6 +24,7 @@ class mssql2012 (
   $ascollation    = $mssql2012::params::ascollation,
   $sqlcollation   = $mssql2012::params::sqlcollation,
   $admin          = $mssql2012::params::admin,
+  $setup_timeout  = $mssql2012::params::setup_timeout,
 ) inherits mssql2012::params {
 
   # validation
@@ -81,7 +82,8 @@ class mssql2012 (
     path      => $media,
     logoutput => true,
     creates   => $instancedir,
-    timeout   => 1200,
+    timeout   => $setup_timeout,
+    returns   => [0,3010],
     require   => [ File['C:/temp/sql2012install.ini'],
                    Dism['NetFx3'] ],
   }
