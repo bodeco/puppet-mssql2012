@@ -24,7 +24,7 @@ class mssql2012 (
   $ascollation    = $mssql2012::params::ascollation,
   $sqlcollation   = $mssql2012::params::sqlcollation,
   $admin          = $mssql2012::params::admin,
-  $setup_timeout  = $mssql2012::params::setup_timeeout,
+  $setup_timeout  = $mssql2012::params::setup_timeout,
 ) inherits mssql2012::params {
 
   # validation
