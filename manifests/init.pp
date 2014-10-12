@@ -87,4 +87,17 @@ class mssql2012 (
     require   => [ File['C:/temp/sql2012install.ini'],
                    Dism['NetFx3'] ],
   }
+
+  # The install of MS SQL may require a reboot. This is indicated when the installation returns a 3010. From the
+  # puppet-reboot documentation:
+  #     If puppet performs a reboot, any remaining items in the catalog will be applied the next time puppet runs. In
+  #     other words, it may take more than one run to reach consistency. In situations where puppet is running as a
+  #     service, puppet should execute again after the machine boots.
+  # As a result, we will defer the reboot until the end of the puppet run. We cannot isolate this to be applied only when
+  # indicated by the operating system because the combination of apply => finished and when => pending triigers a warning
+  # and is not supported.
+  reboot { 'reboot_after_mssql':
+    apply     => finished,
+    subscribe => Exec['install_mssql2012'],
+  }
 }
