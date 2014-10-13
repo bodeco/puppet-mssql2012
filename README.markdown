@@ -37,4 +37,6 @@ class { 'mssql2012':
 }
 ```
 
-See http://msdn.microsoft.com/en-us/library/ms144259.aspx for more information about intalling SQL Server 2012 from the Command Prompt.
+See http://msdn.microsoft.com/en-us/library/ms144259.aspx for more information about installing SQL Server 2012 from the Command Prompt.
+
+After installation of MS SQL, the host will be rebooted. 
