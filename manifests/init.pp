@@ -68,7 +68,7 @@ class mssql2012 (
     password => $sqlsvcpassword,
   }
 
-  file { 'C:/temp/sql2012install.ini':
+  file { 'C:/Windows/Temp/sql2012install.ini':
     content => template('mssql2012/config.ini.erb'),
   }
 
@@ -77,14 +77,14 @@ class mssql2012 (
   }
 
   exec { 'install_mssql2012':
-    command   => "${media}\\setup.exe /Action=Install /IACCEPTSQLSERVERLICENSETERMS /Q /HIDECONSOLE /CONFIGURATIONFILE=C:\\temp\\sql2012install.ini /SAPWD=\"${sapwd}\" /SQLSVCPASSWORD=\"${sqlsvcpassword}\" /AGTSVCPASSWORD=\"${agtsvcpassword}\" /ASSVCPASSWORD=\"${assvcpassword}\" /RSSVCPASSWORD=\"${rssvcpassword}\"",
+    command   => "${media}\\setup.exe /Action=Install /IACCEPTSQLSERVERLICENSETERMS /Q /HIDECONSOLE /CONFIGURATIONFILE=C:\\Windows\\Temp\\sql2012install.ini /SAPWD=\"${sapwd}\" /SQLSVCPASSWORD=\"${sqlsvcpassword}\" /AGTSVCPASSWORD=\"${agtsvcpassword}\" /ASSVCPASSWORD=\"${assvcpassword}\" /RSSVCPASSWORD=\"${rssvcpassword}\"",
     cwd       => $media,
     path      => $media,
     logoutput => true,
     creates   => $instancedir,
     timeout   => $setup_timeout,
     returns   => [0,3010],
-    require   => [ File['C:/temp/sql2012install.ini'],
+    require   => [ File['C:/Windows/Temp/sql2012install.ini'],
                    Dism['NetFx3'] ],
   }
 
